@@ -227,3 +227,20 @@ def generar_notificaciones_pendientes():
         for trabajo in pendientes:
             st.info(f"Pendiente: {trabajo['tipo_trabajo']} - {trabajo['numero_orden']} para {trabajo['doctor']}. Enviado a {trabajo['laboratorio']} el {trabajo['fecha_envio']}.")
 
+def mostrar_datos_como_texto(datos):
+    """Convierte datos JSON a un formato de texto legible."""
+    texto = ""
+    if isinstance(datos, dict):
+        for key, value in datos.items():
+            texto += f"{key}: {value}\n"
+    elif isinstance(datos, list):
+        for item in datos:
+            if isinstance(item, dict):
+                for key, value in item.items():
+                    texto += f"{key}: {value}\n"
+                texto += "\n"
+            else:
+                texto += f"{item}\n"
+    return texto
+
+# Incluye otras funciones utilitarias según sea necesario
